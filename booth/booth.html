@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amphibooth - Strike a Pose!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="booth.css">
+    
+    <style>
+        * {
+            cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' style='font-size:24px;'><text y='20'>✨</text></svg>") 12 12, auto !important;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="top-nav">
+        <a href="booth.html" class="nav-btn active"><i class="fa-solid fa-camera"></i> Booth</a>
+        <a href="../gallery/gallery.html" class="nav-btn"><i class="fa-solid fa-images"></i> Gallery</a>
+        <div class="nav-divider"></div>
+        <a href="#" id="btn-logout" class="nav-btn logout"><i class="fa-solid fa-arrow-right-from-bracket"></i> Bye-bye! 👋</a>
+    </nav>
+
+    <main class="main-content">
+        <header class="header-title">
+            <h1>Strike a Pose! 📸</h1>
+            <p>Choose a filter and snap that cuteness, <span id="nama-user">Memuat...</span>!</p>
+        </header>
+
+        <div class="booth-layout">
+            
+            <div class="camera-section">
+                <div class="camera-viewport" id="live-camera">
+                    <p class="loading-text">Menyalakan kamera... 👀</p>
+                    <video id="video-feed" autoplay playsinline></video>
+                    
+                    <img id="live-overlay" src="" alt="filter" />
+                    
+                    <canvas id="canvas-overlay"></canvas>
+                </div>
+                
+                <button class="btn-shutter" id="shutter-button">
+                    <i class="fa-solid fa-camera"></i> SNAP IT! 📸
+                </button>
+            </div>
+
+            <div class="side-panel">
+                <div class="panel-box" id="filters-panel">
+                    <h3>Filters ✨</h3>
+                    <div class="filter-list" id="filter-options">
+                        <button class="btn-filter active" data-filter="none">😊 No Filter</button>
+                        <button class="btn-filter" data-filter="devil">😈 Devil Horns</button>
+                        <button class="btn-filter" data-filter="blush">😳 Blushing</button>
+                        <button class="btn-filter" data-filter="frog">🐸 Frog Hat</button>
+                        <button class="btn-filter" data-filter="cat">🐱 Cat Ears</button>
+                        <button class="btn-filter" data-filter="sparkle">✨ Sparkles</button>
+                        <button class="btn-filter" data-filter="heart">💖 Hearts</button>
+                    </div>
+                </div>
+
+                <div class="panel-box hidden" id="post-capture-panel">
+                    <h3>Cute Effects 💖</h3>
+                    <div class="filter-list" id="effect-options">
+                        <button class="btn-filter active" data-effect="none">Original</button>
+                        <button class="btn-filter" data-effect="grayscale">Aesthetic B&W</button>
+                        <button class="btn-filter" data-effect="blur">Dreamy Blur</button>
+                        <button class="btn-filter" data-effect="sepia">Vintage</button>
+                        <button class="btn-filter" data-effect="invert">Alien Mode</button>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn-save" id="save-button">Yess, Save It! 💖</button>
+                        <button class="btn-delete" id="delete-button">Noo, Delete 🥺</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <div class="floating-assets">
+        <span class="asset frog-1">🐸</span>
+        <span class="asset star-1">⭐</span>
+        <span class="asset heart-1">💖</span>
+        <span class="asset sparkle-1">✨</span>
+        <span class="asset bubble-1">🫧</span>
+        <span class="asset cat-1">🐱</span>
+        <span class="asset bunny-1">🐰</span>
+        <span class="asset flower-1">🌸</span>
+        <span class="asset ribbon-1">🎀</span>
+        <span class="asset bear-1">🧸</span>
+        <span class="asset text-cute">Cute! 💕</span>
+        <span class="asset text-boop">Boop! 🐾</span>
+    </div>
+
+    <script src="booth.js"></script>
+</body>
+</html>

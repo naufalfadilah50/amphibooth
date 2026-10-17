@@ -1,0 +1,190 @@
+/* ==========================================================================
+   AMPHIBOOTH - LOGIN CSS (SUPER KAWAI EDITION)
+   ========================================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* 1. BACKGROUND POLKA DOT LUCU */
+    background-color: #FFFDF9;
+    background-image: radial-gradient(#FFC0CB 2px, transparent 2px);
+    background-size: 30px 30px; /* Jarak antar bintik */
+    
+    /* 2. CUSTOM CURSOR BINTANG */
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' style='font-size:24px;'><text y='20'>✨</text></svg>") 12 12, auto;
+    
+    font-family: 'Quicksand', sans-serif;
+    color: #795548;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    /* PERBAIKAN: Membiarkan mouse nembus area kosong agar emote bisa disentuh */
+    pointer-events: none; 
+}
+
+.auth-box {
+    background-color: #FFFFFF;
+    width: 100%;
+    max-width: 440px;
+    padding: 45px 35px;
+    border: 3px solid #795548;
+    border-radius: 28px;
+    text-align: center;
+    box-shadow: 0px 12px 0px rgba(121, 85, 72, 0.15);
+    /* Sedikit animasi goyang saat pertama kali web dibuka */
+    animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* PERBAIKAN: Mengembalikan fungsi klik dan ketik hanya untuk kotak form */
+    pointer-events: auto; 
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.brand-title {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #FFC0CB;
+    margin-bottom: 5px;
+    text-shadow: 2px 2px 0px #795548;
+}
+
+.brand-subtitle {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #795548;
+    margin-bottom: 35px;
+}
+
+.input-group { margin-bottom: 24px; text-align: left; }
+.input-group label { display: block; font-size: 0.95rem; font-weight: 700; margin-bottom: 8px; margin-left: 5px; }
+
+.input-group input {
+    width: 100%;
+    padding: 14px 20px;
+    background-color: #FFFFFF;
+    border: 2px solid #E6E6FA;
+    border-radius: 50px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #795548;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+    border-color: #FFC0CB;
+    background-color: #FFFDF9;
+    box-shadow: 0px 4px 0px rgba(121, 85, 72, 0.1);
+}
+
+.btn-auth {
+    width: 100%;
+    padding: 16px;
+    background-color: #FFC0CB;
+    border: 3px solid #795548;
+    border-radius: 50px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #795548;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    box-shadow: 0px 6px 0px #795548;
+    transition: all 0.2s ease;
+}
+
+.btn-auth:hover {
+    background-color: #FFB2C1;
+    transform: translateY(-2px);
+    box-shadow: 0px 8px 0px #795548;
+}
+
+.btn-auth:active {
+    transform: translateY(6px);
+    box-shadow: 0px 0px 0px #795548;
+}
+
+.auth-links p { font-size: 0.95rem; font-weight: 600; margin-bottom: 12px; }
+.auth-links a { color: #FFC0CB; text-decoration: none; font-weight: 700; text-shadow: 1px 1px 0px rgba(121, 85, 72, 0.2); transition: color 0.2s; }
+.auth-links a:hover { color: #795548; }
+
+.forgot-link { display: inline-block; font-size: 0.9rem; color: #795548 !important; text-shadow: none !important; opacity: 0.8; }
+.forgot-link:hover { opacity: 1; text-decoration: underline !important; }
+
+/* ==========================================================================
+   DEKORASI FLOATING ASSETS (SUPER MERIAH)
+   ========================================================================== */
+
+.floating-assets {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; /* Biar tidak mengganggu klik form */
+    z-index: 1;
+}
+
+.asset {
+    position: absolute;
+    font-size: 2.5rem;
+    filter: drop-shadow(2px 4px 0px rgba(121, 85, 72, 0.15));
+    animation: floatyAnimation 4s ease-in-out infinite alternate;
+    pointer-events: auto; /* Buka akses agar bisa di-hover */
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* 3. INTERAKSI HOVER: Emote Kaget / Membesar saat disentuh mouse */
+.asset:hover {
+    transform: scale(1.5) rotate(15deg) !important;
+    animation-play-state: paused; /* Berhenti melayang saat disentuh */
+}
+
+/* Style khusus untuk teks melayang */
+.text-cute, .text-boop {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #FFC0CB;
+    background: #fff;
+    padding: 8px 16px;
+    border: 2px solid #795548;
+    border-radius: 20px;
+    box-shadow: 0px 4px 0px rgba(121, 85, 72, 0.1);
+}
+
+/* Koordinat Baru Lebih Ramai */
+.frog-1    { top: 8%; left: 12%; animation-delay: 0s; }
+.star-1    { top: 40%; left: 4%; animation-delay: 0.5s; font-size: 2.2rem; }
+.heart-1   { bottom: 15%; left: 15%; animation-delay: 1s; }
+.sparkle-1 { top: 12%; right: 12%; animation-delay: 1.5s; }
+.bubble-1  { bottom: 20%; right: 5%; animation-delay: 2s; }
+.cat-1     { top: 50%; right: 8%; animation-delay: 0.7s; }
+.bunny-1   { bottom: 35%; left: 8%; animation-delay: 1.2s; }
+.flower-1  { top: 75%; right: 15%; animation-delay: 1.8s; }
+.ribbon-1  { top: 25%; left: 20%; animation-delay: 0.3s; font-size: 2rem;}
+.bear-1    { bottom: 8%; right: 25%; animation-delay: 1.1s; }
+.text-cute { top: 15%; left: 65%; animation-delay: 2.2s; }
+.text-boop { bottom: 25%; left: 25%; animation-delay: 0.8s; }
+
+@keyframes floatyAnimation {
+    0%   { transform: translateY(0px) rotate(0deg); }
+    100% { transform: translateY(-20px) rotate(10deg); }
+}

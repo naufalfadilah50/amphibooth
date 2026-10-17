@@ -1,0 +1,256 @@
+/* ==========================================================================
+   AMPHIBOOTH - GALLERY CSS 
+   ========================================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #FFFDF9;
+    background-image: radial-gradient(#FFC0CB 2px, transparent 2px);
+    background-size: 30px 30px;
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' style='font-size:24px;'><text y='20'>✨</text></svg>") 12 12, auto;
+    font-family: 'Quicksand', sans-serif;
+    color: #795548;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Navigasi Melayang di Atas */
+.top-nav {
+    margin-top: 30px;
+    background-color: #FFFFFF;
+    border: 3px solid #795548;
+    border-radius: 50px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0px 8px 0px rgba(121, 85, 72, 0.15);
+    z-index: 20; /* Paling depan */
+}
+
+.nav-btn {
+    text-decoration: none;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    color: #795548;
+    padding: 10px 20px;
+    border-radius: 30px;
+    transition: all 0.2s ease;
+}
+
+.nav-btn.active {
+    background-color: #FFC0CB;
+    border: 2px solid #795548;
+    box-shadow: 0px 4px 0px #795548;
+}
+
+.nav-btn:hover:not(.active) {
+    background-color: #FFF0F2;
+}
+
+.nav-divider { width: 2px; height: 30px; background-color: #E6E6FA; }
+
+.nav-btn.logout {
+    background-color: #E6E6FA;
+    border: 2px solid #795548;
+    box-shadow: 0px 4px 0px #795548;
+}
+
+/* Header & Judul */
+.main-content {
+    width: 100%;
+    max-width: 1200px;
+    padding: 30px 20px;
+    text-align: center;
+    z-index: 10;
+}
+
+.header-title h1 {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 3rem;
+    color: #FFC0CB;
+    text-shadow: 2px 2px 0px #795548;
+    margin-bottom: 5px;
+}
+
+.header-title p {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 40px;
+}
+
+/* Container & Pesan Loading/Kosong */
+.gallery-container {
+    background-color: #FFFFFF;
+    border: 4px solid #795548;
+    border-radius: 30px;
+    padding: 40px;
+    box-shadow: 0px 12px 0px rgba(121, 85, 72, 0.15);
+    min-height: 400px;
+    position: relative;
+}
+
+.loading-text, .empty-text {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #795548;
+    margin-top: 50px;
+}
+
+.empty-text { margin-bottom: 20px; }
+
+.btn-to-booth {
+    display: inline-block;
+    background-color: #FF6B6B;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.2rem;
+    padding: 15px 30px;
+    border: 3px solid #795548;
+    border-radius: 50px;
+    box-shadow: 0px 6px 0px #795548;
+    transition: all 0.2s ease;
+}
+
+.btn-to-booth:hover { transform: translateY(-4px); box-shadow: 0px 10px 0px #795548; background-color: #FF8787; }
+.btn-to-booth:active { transform: translateY(6px); box-shadow: 0px 0px 0px #795548; }
+
+.hidden { display: none !important; }
+
+/* Grid Foto Polaroid */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+    justify-items: center;
+}
+
+.photo-card {
+    background-color: #FFF;
+    padding: 10px 10px 20px 10px;
+    border: 3px solid #E6E6FA;
+    border-radius: 15px;
+    box-shadow: 4px 6px 0px rgba(121, 85, 72, 0.1);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    width: 100%;
+}
+
+.photo-card img {
+    width: 100%;
+    border-radius: 10px;
+    border: 2px solid #795548;
+    display: block;
+}
+
+.photo-card:hover {
+    transform: scale(1.05) rotate(-2deg);
+    border-color: #FFC0CB;
+    box-shadow: 8px 12px 0px rgba(121, 85, 72, 0.15);
+    z-index: 2;
+}
+
+.photo-card:nth-child(even):hover {
+    transform: scale(1.05) rotate(2deg);
+}
+
+/* ==========================================================================
+   FIX TOTAL: DEKORASI FLOATING (MENGGUNAKAN KODE ASLI LOGIN LU)
+   ========================================================================== */
+
+.floating-assets {
+    position: fixed; 
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; /* Biar mouse bisa nembus ke kotak foto */
+    z-index: 15; /* Berada di depan galeri, tapi di belakang navigasi */
+}
+
+/* KODE FISIK EMOTE - SAMA PERSIS KAYA DI LOGIN.CSS LU */
+.asset {
+    position: absolute;
+    font-size: 2.5rem;
+    filter: drop-shadow(2px 4px 0px rgba(121, 85, 72, 0.15));
+    animation: floatyAnimation 4s ease-in-out infinite alternate;
+    pointer-events: auto; /* Buka akses agar bisa disentuh mouse */
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* KODE INTERAKSI HOVER - SAMA PERSIS KAYA DI LOGIN.CSS LU */
+.asset:hover {
+    transform: scale(1.5) rotate(15deg) !important;
+    animation-play-state: paused; 
+}
+
+/* Kotak untuk teks melayang */
+.text-cute, .text-boop {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #FFC0CB;
+    background: #fff;
+    padding: 8px 16px;
+    border: 2px solid #795548;
+    border-radius: 20px;
+    box-shadow: 0px 4px 0px rgba(121, 85, 72, 0.1);
+}
+
+/* KOORDINAT DI-PUSH KE UJUNG LAYAR (Aman dari tabrakan kotak 1200px) */
+/* --- AREA KIRI --- */
+.frog-1    { top: 10%; left: 3%; animation-delay: 0s; }
+.star-1    { top: 40%; left: 2%; animation-delay: 0.5s; font-size: 2.2rem; }
+.bunny-1   { bottom: 35%; left: 3%; animation-delay: 1.2s; }
+.heart-1   { bottom: 10%; left: 5%; animation-delay: 1s; }
+.text-boop { bottom: 5%; left: 2%; animation-delay: 0.8s; }
+
+/* --- AREA KANAN --- */
+.text-cute { top: 10%; right: 2%; animation-delay: 2.2s; }
+.sparkle-1 { top: 25%; right: 4%; animation-delay: 1.5s; }
+.flower-1  { top: 40%; right: 3%; animation-delay: 1.8s; }
+.cat-1     { top: 60%; right: 2%; animation-delay: 0.7s; }
+.bubble-1  { bottom: 25%; right: 5%; animation-delay: 2s; }
+.bear-1    { bottom: 10%; right: 4%; animation-delay: 1.1s; }
+.ribbon-1  { top: 15%; left: 20%; animation-delay: 0.3s; font-size: 2rem;}
+
+@keyframes floatyAnimation {
+    0%   { transform: translateY(0px) rotate(0deg); }
+    100% { transform: translateY(-20px) rotate(10deg); }
+}
+
+/* --- FITUR TAMBAHAN LOVE & TRASH --- */
+.card-actions { 
+    display: flex; 
+    justify-content: center; 
+    gap: 20px; 
+    margin-top: 15px; 
+}
+.btn-action { 
+    background: none; 
+    border: none; 
+    cursor: pointer; 
+    font-size: 1.4rem; 
+    color: #795548; 
+    transition: all 0.2s ease; 
+}
+.btn-love.active { color: #FF6B6B !important; }
+.btn-trash:hover { color: #FF6B6B !important; }
+
+.filter-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+/* Biar tombol filter lebih kecil dari tombol "Yuk foto sekarang" */
+.filter-controls .btn-to-booth {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+}

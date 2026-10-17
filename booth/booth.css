@@ -1,0 +1,350 @@
+/* ==========================================================================
+   AMPHIBOOTH - MAIN BOOTH CSS 
+   ========================================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #FFFDF9;
+    background-image: radial-gradient(#FFC0CB 2px, transparent 2px);
+    background-size: 30px 30px;
+    font-family: 'Quicksand', sans-serif;
+    color: #795548;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Navigasi Melayang di Atas */
+.top-nav {
+    margin-top: 30px;
+    background-color: #FFFFFF;
+    border: 3px solid #795548;
+    border-radius: 50px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0px 8px 0px rgba(121, 85, 72, 0.15);
+    z-index: 10;
+}
+
+.nav-btn {
+    text-decoration: none;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    color: #795548;
+    padding: 10px 20px;
+    border-radius: 30px;
+    transition: all 0.2s ease;
+}
+
+.nav-btn.active {
+    background-color: #FFC0CB;
+    border: 2px solid #795548;
+    box-shadow: 0px 4px 0px #795548;
+}
+
+.nav-btn:hover:not(.active) {
+    background-color: #FFF0F2;
+}
+
+.nav-divider {
+    width: 2px;
+    height: 30px;
+    background-color: #E6E6FA;
+}
+
+.nav-btn.logout {
+    background-color: #E6E6FA;
+    border: 2px solid #795548;
+    box-shadow: 0px 4px 0px #795548;
+}
+
+/* Header & Judul */
+.main-content {
+    width: 100%;
+    max-width: 1000px;
+    padding: 30px 20px;
+    text-align: center;
+    z-index: 5;
+}
+
+.header-title h1 {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 3.5rem;
+    color: #FFC0CB;
+    text-shadow: 2px 2px 0px #795548;
+    margin-bottom: 5px;
+}
+
+.header-title p {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+/* Grid Layout (Kamera Kiri, Panel Kanan) */
+.booth-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+/* Frame Layar Kamera */
+.camera-viewport {
+    background-color: #E6E6FA; /* Lavender Soft */
+    width: 100%;
+    aspect-ratio: 16/9;
+    border: 4px solid #98FF98; /* Mint Green Border */
+    border-radius: 30px;
+    box-shadow: 0px 0px 0px 3px #795548, 0px 12px 0px rgba(121, 85, 72, 0.15); /* Double border effect */
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.loading-text {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #795548;
+    opacity: 0.5;
+}
+
+/* ==========================================================================
+   PERBAIKAN FITUR MIRROR (DOUBLE MIRROR FIX)
+   ========================================================================== */
+/* Video & Canvas Utuh */
+video, canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: none; /* Sembunyikan dulu sebelum JS nyala */
+}
+
+/* KHUSUS VIDEO LIVE: Beri efek cermin agar natural saat sesi foto */
+video {
+    transform: scaleX(-1);
+}
+
+/* KHUSUS CANVAS (FOTO BEKU): Tidak perlu CSS Mirror karena JS sudah membaliknya secara fisik */
+canvas {
+    transform: none; 
+}
+/* ========================================================================== */
+
+/* Tombol Jepret Besar */
+.btn-shutter {
+    width: 100%;
+    background-color: #FF6B6B;
+    color: #FFFFFF;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.8rem;
+    padding: 20px;
+    border: 4px solid #795548;
+    border-radius: 30px;
+    box-shadow: 0px 8px 0px #795548;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+}
+
+.btn-shutter:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 12px 0px #795548;
+    background-color: #FF8787;
+}
+
+.btn-shutter:active {
+    transform: translateY(8px);
+    box-shadow: 0px 0px 0px #795548;
+}
+
+/* Panel Sisi Kanan (Filters) */
+.panel-box {
+    background-color: #FFFFFF;
+    border: 3px solid #795548;
+    border-radius: 30px;
+    padding: 25px;
+    box-shadow: 0px 12px 0px rgba(121, 85, 72, 0.15);
+    margin-bottom: 20px;
+}
+
+.panel-box h3 {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.filter-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 350px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+/* Scrollbar Imut */
+.filter-list::-webkit-scrollbar { width: 8px; }
+.filter-list::-webkit-scrollbar-thumb { background: #FFC0CB; border-radius: 10px; border: 1px solid #795548; }
+
+.btn-filter {
+    background-color: #E6E6FA;
+    border: 2px solid #E6E6FA;
+    padding: 15px;
+    border-radius: 20px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #795548;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.3s ease;
+}
+
+.btn-filter:hover {
+    border-color: #795548;
+    transform: translateX(5px);
+}
+
+.btn-filter.active {
+    background-color: #FFC0CB;
+    border: 2px solid #795548;
+    box-shadow: 4px 4px 0px rgba(121, 85, 72, 0.1);
+}
+
+/* Tombol Action Save/Delete */
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px dashed #E6E6FA;
+}
+
+.btn-save, .btn-delete {
+    padding: 15px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.2rem;
+    border-radius: 20px;
+    cursor: pointer;
+    border: 2px solid #795548;
+    transition: all 0.2s ease;
+}
+
+.btn-save {
+    background-color: #FFC0CB;
+    box-shadow: 0px 4px 0px #795548;
+}
+
+.btn-delete {
+    background-color: #FFFDF9;
+    box-shadow: 0px 4px 0px #795548;
+}
+
+.btn-save:active, .btn-delete:active {
+    transform: translateY(4px);
+    box-shadow: 0px 0px 0px #795548;
+}
+
+.hidden { display: none !important; }
+
+/* ==========================================================================
+   DEKORASI FLOATING ASSETS (TAMBAHAN: SUPER MERIAH ALA LOGIN)
+   ========================================================================== */
+.floating-assets {
+    position: fixed; 
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 1; /* Diset 1 agar di belakang kamera & tombol */
+}
+
+.asset {
+    position: absolute;
+    font-size: 2.5rem;
+    filter: drop-shadow(2px 4px 0px rgba(121, 85, 72, 0.15));
+    animation: floatyAnimation 4s ease-in-out infinite alternate;
+    pointer-events: auto; /* Biar bisa disentuh mouse */
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Animasi Kaget / Membesar saat disentuh mouse */
+.asset:hover {
+    transform: scale(1.5) rotate(15deg) !important;
+    animation-play-state: paused;
+}
+
+/* Kotak untuk teks melayang */
+.text-cute, .text-boop {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #FFC0CB;
+    background: #fff;
+    padding: 8px 16px;
+    border: 2px solid #795548;
+    border-radius: 20px;
+    box-shadow: 0px 4px 0px rgba(121, 85, 72, 0.1);
+}
+
+/* Koordinat Diatur Supaya Mengelilingi Tepi Layar */
+.frog-1    { top: 10%; left: 8%; animation-delay: 0s; }
+.star-1    { top: 45%; left: 4%; animation-delay: 0.5s; font-size: 2.2rem; }
+.heart-1   { bottom: 15%; left: 10%; animation-delay: 1s; }
+.sparkle-1 { top: 15%; right: 8%; animation-delay: 1.5s; }
+.bubble-1  { bottom: 20%; right: 5%; animation-delay: 2s; }
+.cat-1     { top: 40%; right: 6%; animation-delay: 0.7s; }
+.bunny-1   { bottom: 35%; left: 5%; animation-delay: 1.2s; }
+.flower-1  { top: 75%; right: 10%; animation-delay: 1.8s; }
+.ribbon-1  { top: 8%; left: 22%; animation-delay: 0.3s; font-size: 2rem;}
+.bear-1    { bottom: 8%; right: 25%; animation-delay: 1.1s; }
+.text-cute { top: 18%; right: 20%; animation-delay: 2.2s; }
+.text-boop { bottom: 12%; left: 25%; animation-delay: 0.8s; }
+
+@keyframes floatyAnimation {
+    0%   { transform: translateY(0px) rotate(0deg); }
+    100% { transform: translateY(-20px) rotate(10deg); }
+}
+
+/* ==========================================================================
+   TAMBAHAN: FIX POSISI PANEL AGAR BERTUMPUK (SWAP DI TEMPAT YANG SAMA)
+   ========================================================================== */
+.side-panel {
+    position: relative;
+    width: 100%;
+    min-height: 520px; /* Menjaga agar tombol save/delete tidak terpotong */
+}
+
+#filters-panel, #post-capture-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+/* ==========================================================================
+   TAMBAHAN: OVERLAY STIKER STATIS
+   ========================================================================== */
+#live-overlay {
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    object-fit: contain; /* Biar stiker gak gepeng */
+    pointer-events: none; /* Biar gak nutupin klik */
+    z-index: 2; /* Berada di depan video */
+    display: none; /* Default disembunyikan */
+}

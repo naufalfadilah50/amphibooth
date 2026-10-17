@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amphibooth - Welcome back, cutie!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+    <div class="auth-container">
+        <div class="auth-box">
+            <h1 class="brand-title">Amphibooth</h1>
+            <p class="brand-subtitle">Welcome back, cutie! 🤓</p>
+            
+            <form action="proses_auth.php" method="POST">
+                <input type="hidden" name="aksi" value="login">
+                
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="your.email@cute.com" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="••••••••" required>
+                </div>
+                
+                <button type="submit" class="btn-auth">Let's Go! 💖</button>
+            </form>
+            
+            <div class="auth-links">
+                <p>Don't have an account? <a href="register.html">Sign up! 🌸</a></p>
+                <a href="forgot.html" class="forgot-link">Forgot password? 🤔</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="floating-assets">
+        <span class="asset frog-1">🐸</span>
+        <span class="asset star-1">⭐</span>
+        <span class="asset heart-1">💖</span>
+        <span class="asset sparkle-1">✨</span>
+        <span class="asset bubble-1">🫧</span>
+        <span class="asset cat-1">🐱</span>
+        <span class="asset bunny-1">🐰</span>
+        <span class="asset flower-1">🌸</span>
+        <span class="asset ribbon-1">🎀</span>
+        <span class="asset bear-1">🧸</span>
+        <span class="asset text-cute">Cute! 💕</span>
+        <span class="asset text-boop">Boop! 🐾</span>
+    </div>
+
+</body>
+</html>
